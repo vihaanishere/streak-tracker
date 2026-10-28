@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Streak Tracker </title>
+</head>
+<body>
+    <header>
+        <h1>Streak Tracker</h1>
+        <p>Project Streak Tracker By Vihaan</p>
+    </header>
+    <main>
+        <section>
+            <h2>
+                Current Streak
+            </h2>
+            <strong> 5 </strong>
+            <p>Daily Streak</p>
+        </section>
+        
+        <section>
+            <h2>Totals</h2>
+            <ul>
+                <li>
+                    <h3>Java</h3>
+                    <p>180 min</p>
+                </li>
+                <li>
+                    <h3>Python</h3>
+                    <p>120 min</p>
+                </li>
+                <li>
+                    <h3>DSA</h3>
+                    <p>150 min</p>
+                </li>
+                <li>
+                    <h3>Web Dev</h3>
+                    <p>210 min</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Add A Log</h2>
+                <form>
+                    
+                    <fieldset id = "subject" >
+                        <legend>Subject:</legend>
+                        <label><input type="radio" value="Java" name="subject" required>Java</label>
+                        <label><input type="radio" value="Python" name="subject" required>Python</label>
+                        <label><input type="radio" value="DSA" name="subject" required>DSA</label>
+                        <label><input type="radio" value="Web Dev" name="subject" required>Web Dev</label>
+                    </fieldset>
+                    
+                    <div>
+                        <label for="minutes">Time in minutes</label>
+                        <input type="number" min="1" id = "minutes" name = "minutes" required>
+                    </div>
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id = "date" name = "date" required>
+                    </div>
+                    <div>
+                        <label for="notes">Notes</label>
+                        <input type="text" id = "notes" name = "notes">
+                    </div>
+                    <div>
+                        <button type="submit">Submit Record</button>
+                    </div>
+                </form>
+        </section>
+        <section>
+    <h2>History</h2>
+    <ul>
+        <li>
+            <h3>Web Dev</h3>
+            <p>60 min</p>
+            <time datetime="2026-10-28">28 Oct 2026</time>
+            <p>Built getStreak with a Set and a while loop</p>
+        </li>
+        <li>
+            <h3>Web Dev</h3>
+            <p>45 min</p>
+            <time datetime="2026-10-27">27 Oct 2026</time>
+            <p>LogEntry, Tracker and validation</p>
+        </li>
+        <li>
+            <h3>DSA</h3>
+            <p>40 min</p>
+            <time datetime="2026-10-26">26 Oct 2026</time>
+            <p>Arrays and two-pointer practice</p>
+        </li>
+        <li>
+            <h3>Java</h3>
+            <p>50 min</p>
+            <time datetime="2026-10-25">25 Oct 2026</time>
+            <p>Classes and constructors</p>
+        </li>
+        <li>
+            <h3>Python</h3>
+            <p>35 min</p>
+            <time datetime="2026-10-24">24 Oct 2026</time>
+            <p>List comprehensions</p>
+        </li>
+    </ul>
+</section>
+    </main>
+    <footer>Github Repo-streak-tracker</footer>
+</body>
+</html>
