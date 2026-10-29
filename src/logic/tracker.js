@@ -29,7 +29,7 @@ class Tracker{
             if(entry.subject.trim() == ""){
                 throw new Error("Empty Subject")
             }
-            if(entry.minutes <= 0 || typeof entry.minutes != "number" || Number.isNaN()){
+            if(entry.minutes <= 0 || typeof entry.minutes != "number" || Number.isNaN(entry.minutes)){
                 throw new Error("Time entered is not valid");
             }
             if(entry.date == undefined || entry.date == null){
@@ -81,4 +81,4 @@ class Tracker{
         }
 }
 
-module.exports = { LogEntry, Tracker, previousDay, todayString};
+export { LogEntry, Tracker, previousDay, todayString };
