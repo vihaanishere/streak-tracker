@@ -3,12 +3,14 @@ import SubjectStats from "./components/SubjectStats";
 import LogList from "./components/LogList";
 import LogForm from "./components/LogForm";
 import { useState } from "react";
-import {LogEntry , Tracker, todayString} from "./logic/tracker";
+import {LogEntry , Tracker} from "./logic/tracker";
 
 
 import './App.css'
 function App(){
+    
     const tracker = new Tracker();
+    
    
     const [logs, setLogs] = useState([
     { id: 1, subject: "Web Dev", minutes: 60, date: "2026-10-28", notes: "Built getStreak with a Set and a while loop" },
@@ -32,15 +34,21 @@ function App(){
     })
     const totals = tracker.totalBySubject()
     const streak = tracker.getStreak()
-    console.log(todayString(), tracker.getStreak(), tracker.getStreak("2026-10-29"));
-    console.log(tracker.logEntries.map(entry => entry.date));
+    function handleAddLog(data){
+    
+        const entry = new LogEntry(Date.now(), data.subject, data.minutes, data.date, data.notes)
+        tracker.addLog(entry)
+        setLogs([entry,...logs])
+    }
     return(
         <main>
             <StreakCard streak={streak} />
             <SubjectStats totals={totals} />
-            <LogForm />
+            <LogForm onAddLog={handleAddLog} />
             <LogList logs={logs} />
+            
         </main>
     )
 }
+
 export default App;
