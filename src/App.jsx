@@ -11,15 +11,16 @@ function App(){
     
     const tracker = new Tracker();
     
-   
-    const [logs, setLogs] = useState([
-    { id: 1, subject: "Web Dev", minutes: 60, date: "2026-10-28", notes: "Built getStreak with a Set and a while loop" },
-    { id: 2, subject: "Web Dev", minutes: 45, date: "2026-10-27", notes: "LogEntry, Tracker and validation" },
-    { id: 3, subject: "DSA", minutes: 40, date: "2026-10-26", notes: "Arrays and two-pointer practice" },
-    { id: 4, subject: "Java", minutes: 50, date: "2026-10-25", notes: "Classes and constructors" },
-    { id: 5, subject: "Python", minutes: 35, date: "2026-10-24", notes: "List comprehensions" },
+    const [logs, setLogs] = useState(() => {
+        try {
+            const saved = localStorage.getItem("logs");
+            return saved ? JSON.parse(saved) : [];
+        } catch (error) {
+            return [];
+        }
+    });
 
-]);
+    
     
     logs.forEach(log =>{
         tracker.addLog(
@@ -37,9 +38,13 @@ function App(){
     function handleAddLog(data){
     
         const entry = new LogEntry(Date.now(), data.subject, data.minutes, data.date, data.notes)
-        tracker.addLog(entry)
-        setLogs([entry,...logs])
+        const newLogs = [entry, ...logs]
+        setLogs(newLogs)
+        localStorage.setItem("logs", JSON.stringify(newLogs))
+        
+        
     }
+    console.log("stored:", localStorage.getItem("logs"));
     return(
         <main>
             <StreakCard streak={streak} />
