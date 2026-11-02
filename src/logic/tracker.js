@@ -20,22 +20,36 @@ function todayString() {
     const day = String(now.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
 }
+function validateDate(date) {
+    // Check format
+    let regex = /^\d{4}-\d{2}-\d{2}$/;
+
+    if (!regex.test(date)) {
+        return false;
+    }
+}
 
 class Tracker{
         constructor(){
             this.logEntries= [];
         }
-        addLog(entry){
-            if(entry.subject.trim() == ""){
+        addLog(entry, today = todayString()){
+            if(entry.subject.trim() == "" || entry.subject === undefined){
                 throw new Error("Empty Subject")
             }
-            if(entry.minutes <= 0 || typeof entry.minutes != "number" || Number.isNaN(entry.minutes)){
+            if(entry.minutes <= 0 || typeof entry.minutes != "number" || Number.isNaN(entry.minutes) || Number.isFinite(entry.minutes)){
                 throw new Error("Time entered is not valid");
             }
-            if(entry.date == undefined || entry.date == null){
+            if(entry.date == undefined || entry.date == null || entry.date == ""){
                 throw new Error("Date not entered")
             }
             this.logEntries.push(entry);
+            if(!validateDate(entry.date)){
+                throw new Error("Date in incorrect format")
+            }
+            if(today < entry.date){
+                throw new Error("Entered date cant be of the future")
+            }
         }
         getLogsBySubject(subject){
             const result = [];

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { todayString } from "../logic/tracker";
 
 
 function LogForm({onAddLog}){
@@ -12,6 +13,7 @@ function LogForm({onAddLog}){
         try {
             onAddLog({ subject, minutes: Number(minutes), date, notes });
             // success: clear the four fields and the error
+            setError("")
             setSubject("")
             setMinutes("")
             setDate("")
@@ -41,7 +43,7 @@ function LogForm({onAddLog}){
                 </div>
                 <div>
                     <label htmlFor="date">Date</label>
-                    <input type="date" id="date" name="date" value = {date} onChange={(event) => setDate(event.target.value)} required/>
+                    <input type="date" id="date" name="date" value = {date} onChange={(event) => setDate(event.target.value)} max={todayString()} required/>
                 </div>
                 <div>
                     <label htmlFor="notes">Notes</label>
